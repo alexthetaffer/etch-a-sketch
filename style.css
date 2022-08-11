@@ -1,10 +1,17 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
 
 .canvas {
     margin: 0 auto;
+    box-sizing: border-box;
     width: 960px;
     height: 960px;
     background-color: bisque;
@@ -12,6 +19,6 @@ body {
 }
 
 .pixel {
-    background-color: blue;
+    background-color: white;
     display: inline-block;
 }
