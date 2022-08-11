@@ -8,4 +8,10 @@ body {
     width: 960px;
     height: 960px;
     background-color: bisque;
+    font-size: 0px;
+}
+
+.pixel {
+    background-color: blue;
+    display: inline-block;
 }
