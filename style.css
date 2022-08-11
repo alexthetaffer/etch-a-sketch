@@ -12,8 +12,6 @@ body {
 .canvas {
     margin: 0 auto;
     box-sizing: border-box;
-    width: 960px;
-    height: 960px;
     background-color: bisque;
     font-size: 0px;
 }

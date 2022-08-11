@@ -1,4 +1,4 @@
-const CANVAS_SIZE = 960;
+const CANVAS_SIZE = 712;
 const canvas = document.querySelector('.canvas');
 let pixels;
 let color = 'black';
@@ -11,6 +11,7 @@ createCanvas(16);
 function createCanvas(n) {
     const pixelSize = Math.floor(CANVAS_SIZE / n);
     const pixelAmount = n * n;
+
     for (let i = 0; i < pixelAmount; i++) {
         const pixel = document.createElement('div');
         pixel.className = 'pixel';
@@ -18,7 +19,8 @@ function createCanvas(n) {
         canvas.appendChild(pixel);
     }
     const pixels = document.querySelectorAll('.pixel');
-    
+    canvas.style.cssText = `width: ${CANVAS_SIZE}px; height: ${CANVAS_SIZE}px`;
+
     // Change pixels color
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', () => changeColor(pixel, color));
