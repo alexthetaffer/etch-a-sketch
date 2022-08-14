@@ -23,9 +23,14 @@ function createCanvas(n) {
 
     // Change pixels color
     pixels.forEach(pixel => {
-        pixel.addEventListener('mouseover', () => changeColor(pixel, color));
+        pixel.addEventListener('mouseover', () => {
+            if (mouseDown) changeColor(pixel, color)});
     })
 }
+// Check if the mouse down
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
 
 function deleteCanvas() {
     const pixels = document.querySelectorAll('.pixel');
