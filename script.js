@@ -25,6 +25,8 @@ function createCanvas(n) {
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', () => {
             if (mouseDown) changeColor(pixel, color)});
+
+        pixel.addEventListener('mousedown', () => changeColor(pixel, color));
     })
 }
 // Check if the mouse down
