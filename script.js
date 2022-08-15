@@ -2,6 +2,7 @@ const CANVAS_SIZE = 712;
 const canvas = document.querySelector('.canvas');
 let pixels;
 let color = 'black';
+let rainbowModeOn = true;
 const size16 = document.querySelector('#size-16');
 const size32 = document.querySelector('#size-32');
 const size64 = document.querySelector('#size-64');
@@ -24,9 +25,9 @@ function createCanvas(n) {
     // Change pixels color
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', () => {
-            if (mouseDown) changeColor(pixel, color)});
+            if (mouseDown) changeColor(pixel, getColor())});
 
-        pixel.addEventListener('mousedown', () => changeColor(pixel, color));
+        pixel.addEventListener('mousedown', () => changeColor(pixel, getColor()));
     })
 }
 // Check if the mouse down
@@ -39,6 +40,12 @@ function deleteCanvas() {
     pixels.forEach(pixel => {
         canvas.removeChild(pixel);
     })
+}
+
+function getColor() {
+    if (rainbowModeOn){
+        return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+    } else return color;
 }
 
 function changeColor(pixel, color) {
