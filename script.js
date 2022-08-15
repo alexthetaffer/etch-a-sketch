@@ -2,7 +2,7 @@ const CANVAS_SIZE = 712;
 const canvas = document.querySelector('.canvas');
 let pixels;
 let color = 'black';
-let rainbowModeOn = true;
+let colorMode = "blackAndWhite";
 const size16 = document.querySelector('#size-16');
 const size32 = document.querySelector('#size-32');
 const size64 = document.querySelector('#size-64');
@@ -16,7 +16,7 @@ function createCanvas(n) {
     for (let i = 0; i < pixelAmount; i++) {
         const pixel = document.createElement('div');
         pixel.className = 'pixel';
-        pixel.style.cssText = `width: ${pixelSize}px; height: ${pixelSize}px`;
+        pixel.style.cssText = `width: ${pixelSize}px; height: ${pixelSize}px; background-color: rgb(255, 255, 255)`;
         canvas.appendChild(pixel);
     }
     const pixels = document.querySelectorAll('.pixel');
@@ -25,9 +25,9 @@ function createCanvas(n) {
     // Change pixels color
     pixels.forEach(pixel => {
         pixel.addEventListener('mouseover', () => {
-            if (mouseDown) changeColor(pixel, getColor())});
+            if (mouseDown) changeColor(pixel, getColor(pixel))});
 
-        pixel.addEventListener('mousedown', () => changeColor(pixel, getColor()));
+        pixel.addEventListener('mousedown', () => changeColor(pixel, getColor(pixel)));
     })
 }
 // Check if the mouse down
@@ -42,9 +42,14 @@ function deleteCanvas() {
     })
 }
 
-function getColor() {
-    if (rainbowModeOn){
+function getColor(pixel) {
+    if (colorMode === 'rainbow') {
         return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+    } else if (colorMode === 'blackAndWhite') {
+        const colors = pixel.style.backgroundColor.replace(/[a-z() ]/g, '').split(',');
+        newColor = `rgb(${colors[0] - 26}, ${colors[1] - 26}, ${colors[2] - 26})`;
+        console.log(newColor); 
+        return newColor;
     } else return color;
 }
 
@@ -67,6 +72,7 @@ size64.addEventListener('click', () => {
     deleteCanvas();
     createCanvas(64);
 });
+
 
 
 
