@@ -9,8 +9,10 @@ const size64 = document.querySelector('#size-64');
 const btnRainbowMode = document.querySelector('#rainbow-mode');
 const btnColorMode = document.querySelector('#color-mode');
 const btnBlackWhite = document.querySelector('#black-white-mode');
+const colorWell = document.querySelector('#colorWell');
 
 createCanvas(16);
+
 
 function createCanvas(n) {
     const pixelSize = Math.floor(CANVAS_SIZE / n);
@@ -78,6 +80,9 @@ btnRainbowMode.onclick = () => colorMode = 'rainbow';
 btnBlackWhite.onclick = () => colorMode = 'blackAndWhite';
 btnColorMode.onclick = () => colorMode = 'color';
 
+colorWell.addEventListener('input', function(e) {
+    color = e.target.value;
+})
 
 
 
