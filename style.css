@@ -35,6 +35,11 @@ body {
     box-sizing: border-box;
     background-color: bisque;
     font-size: 0px;
+
+    display: grid;
+    width: 700px;
+    height: 700px;
+    box-shadow: 0 0 10px gray;
 }
 
 .pixel {

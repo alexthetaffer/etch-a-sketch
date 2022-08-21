@@ -14,18 +14,40 @@ const colorWell = document.querySelector('#colorWell');
 createCanvas(16);
 
 
-function createCanvas(n) {
-    const pixelSize = Math.floor(CANVAS_SIZE / n);
-    const pixelAmount = n * n;
+// function createCanvas(n) {
+//     const pixelSize = Math.floor(CANVAS_SIZE / n);
+//     const pixelAmount = n * n;
 
-    for (let i = 0; i < pixelAmount; i++) {
+//     for (let i = 0; i < pixelAmount; i++) {
+//         const pixel = document.createElement('div');
+//         pixel.className = 'pixel';
+//         pixel.style.cssText = `width: ${pixelSize}px; height: ${pixelSize}px; background-color: rgb(255, 255, 255)`;
+//         canvas.appendChild(pixel);
+//     }
+//     const pixels = document.querySelectorAll('.pixel');
+//     canvas.style.cssText = `width: ${CANVAS_SIZE}px; height: ${CANVAS_SIZE}px`;
+
+//     // Change pixels color
+//     pixels.forEach(pixel => {
+//         pixel.addEventListener('mouseover', () => {
+//             if (mouseDown) changeColor(pixel, getColor(pixel))});
+
+//         pixel.addEventListener('mousedown', () => changeColor(pixel, getColor(pixel)));
+//     })
+// }
+
+function createCanvas(n) {
+    pixelAmount = n * n
+    canvas.style.cssText = 
+        `grid-template-columns: repeat(${n}, 1fr);
+        grid-template-rows: repeat(${n}, 1fr);`
+        for (let i = 0; i < pixelAmount; i++) {
         const pixel = document.createElement('div');
         pixel.className = 'pixel';
-        pixel.style.cssText = `width: ${pixelSize}px; height: ${pixelSize}px; background-color: rgb(255, 255, 255)`;
+        pixel.style.cssText = `background-color: rgb(255, 255, 255)`;
         canvas.appendChild(pixel);
     }
     const pixels = document.querySelectorAll('.pixel');
-    canvas.style.cssText = `width: ${CANVAS_SIZE}px; height: ${CANVAS_SIZE}px`;
 
     // Change pixels color
     pixels.forEach(pixel => {
@@ -35,6 +57,7 @@ function createCanvas(n) {
         pixel.addEventListener('mousedown', () => changeColor(pixel, getColor(pixel)));
     })
 }
+
 // Check if the mouse down
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
