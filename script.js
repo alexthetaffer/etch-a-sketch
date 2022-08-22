@@ -1,12 +1,11 @@
-const CANVAS_SIZE = 712;
-const canvas = document.querySelector('.canvas');
+
 let pixels;
 let color = '#222222';
 let colorMode = "color";
+
+const canvas = document.querySelector('.canvas');
 const BtnCanvasSize = document.querySelector('#btn-size');
-const btnRainbowMode = document.querySelector('#rainbow-mode');
-const btnColorMode = document.querySelector('#color-mode');
-const btnShadeMode = document.querySelector('#shade-mode');
+const modeButtons = document.querySelectorAll('.btn-mode');
 const colorWell = document.querySelector('#colorWell');
 
 createCanvas(16);
@@ -74,13 +73,19 @@ BtnCanvasSize.addEventListener('click', () => {
 
 });
 
-btnRainbowMode.onclick = () => colorMode = 'rainbow';
-btnShadeMode.onclick = () => colorMode = 'shade';
-btnColorMode.onclick = () => colorMode = 'color';
-colorWell.addEventListener('input', function(e) {
-    color = e.target.value;
+modeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const currentActiveBtn = document.querySelector('.active');
+        currentActiveBtn.classList.remove('active');
+        if (button.id === 'color-mode') {
+            colorMode = 'color';
+            button.classList.add('active')
+        } else if (button.id === 'rainbow-mode') {
+            colorMode = 'rainbow';
+            button.classList.add('active')
+        } else if (button.id === 'shade-mode') {
+            colorMode = 'shade';
+            button.classList.add('active');
+        }
+    })
 })
-
-
-
-
