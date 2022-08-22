@@ -2,11 +2,12 @@
 let pixels;
 let color = '#222222';
 let colorMode = "color";
+let mouseDown = false;
 
 const canvas = document.querySelector('.canvas');
 const BtnCanvasSize = document.querySelector('#btn-size');
 const modeButtons = document.querySelectorAll('.btn-mode');
-const colorWell = document.querySelector('#colorWell');
+const colorPicker = document.querySelector('#colorPicker');
 
 createCanvas(16);
 
@@ -33,7 +34,6 @@ function createCanvas(n) {
 }
 
 // Check if the mouse down
-let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
@@ -88,4 +88,8 @@ modeButtons.forEach(button => {
             button.classList.add('active');
         }
     })
+})
+
+colorPicker.addEventListener('input', (e) => {
+    color = e.target.value;
 })
