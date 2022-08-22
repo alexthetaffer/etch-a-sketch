@@ -15,11 +15,13 @@ function createCanvas(n) {
     pixelAmount = n * n
     canvas.style.cssText = 
         `grid-template-columns: repeat(${n}, 1fr);
-        grid-template-rows: repeat(${n}, 1fr);`
+        grid-template-rows: repeat(${n}, 1fr);`;
+        canvas.setAttribute('draggable', 'false')
         for (let i = 0; i < pixelAmount; i++) {
         const pixel = document.createElement('div');
         pixel.className = 'pixel';
         pixel.style.cssText = `background-color: rgb(255, 255, 255)`;
+        pixel.setAttribute('draggable', 'false');
         canvas.appendChild(pixel);
     }
     const pixels = document.querySelectorAll('.pixel');
