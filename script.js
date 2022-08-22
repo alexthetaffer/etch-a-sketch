@@ -1,8 +1,8 @@
 const CANVAS_SIZE = 712;
 const canvas = document.querySelector('.canvas');
 let pixels;
-let color = 'black';
-let colorMode = "shade";
+let color = '#222222';
+let colorMode = "color";
 const canvasSize = document.querySelector('#btn-size');
 const btnRainbowMode = document.querySelector('#rainbow-mode');
 const btnColorMode = document.querySelector('#color-mode');
@@ -62,10 +62,15 @@ function changeColor(pixel, color) {
 
 // Change canvas size
 canvasSize.addEventListener('click', () => {
-    deleteCanvas();
-    do {
+    
+    let newCanvasSize = null;
+
+    while (newCanvasSize > 100 || newCanvasSize <= 0) {
         newCanvasSize = parseInt(prompt('Enter number of squares per side'));
-    } while (newCanvasSize > 100 || newCanvasSize <= 0 || isNaN(newCanvasSize));
+        if (isNaN(newCanvasSize)) return;
+    }
+
+    deleteCanvas();
     createCanvas(newCanvasSize);
     canvasSize.textContent = `${newCanvasSize}×${newCanvasSize}`;
 
