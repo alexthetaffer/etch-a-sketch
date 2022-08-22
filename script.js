@@ -3,38 +3,13 @@ const canvas = document.querySelector('.canvas');
 let pixels;
 let color = 'black';
 let colorMode = "blackAndWhite";
-const size16 = document.querySelector('#size-16');
-const size32 = document.querySelector('#size-32');
-const size64 = document.querySelector('#size-64');
+const canvasSize = document.querySelector('#btn-size');
 const btnRainbowMode = document.querySelector('#rainbow-mode');
 const btnColorMode = document.querySelector('#color-mode');
 const btnBlackWhite = document.querySelector('#black-white-mode');
 const colorWell = document.querySelector('#colorWell');
 
 createCanvas(16);
-
-
-// function createCanvas(n) {
-//     const pixelSize = Math.floor(CANVAS_SIZE / n);
-//     const pixelAmount = n * n;
-
-//     for (let i = 0; i < pixelAmount; i++) {
-//         const pixel = document.createElement('div');
-//         pixel.className = 'pixel';
-//         pixel.style.cssText = `width: ${pixelSize}px; height: ${pixelSize}px; background-color: rgb(255, 255, 255)`;
-//         canvas.appendChild(pixel);
-//     }
-//     const pixels = document.querySelectorAll('.pixel');
-//     canvas.style.cssText = `width: ${CANVAS_SIZE}px; height: ${CANVAS_SIZE}px`;
-
-//     // Change pixels color
-//     pixels.forEach(pixel => {
-//         pixel.addEventListener('mouseover', () => {
-//             if (mouseDown) changeColor(pixel, getColor(pixel))});
-
-//         pixel.addEventListener('mousedown', () => changeColor(pixel, getColor(pixel)));
-//     })
-// }
 
 function createCanvas(n) {
     pixelAmount = n * n
@@ -85,20 +60,16 @@ function changeColor(pixel, color) {
 }
 
 // Change canvas size
-size16.addEventListener('click', () => {
+canvasSize.addEventListener('click', () => {
     deleteCanvas();
-    createCanvas(16);
+    do {
+        newCanvasSize = parseInt(prompt('Enter number of squares per side'));
+    } while (newCanvasSize > 100 || newCanvasSize <= 0 || isNaN(newCanvasSize));
+    createCanvas(newCanvasSize);
+    canvasSize.textContent = `${newCanvasSize}×${newCanvasSize}`;
+
 });
 
-size32.addEventListener('click', () => {
-    deleteCanvas();
-    createCanvas(32);
-});
-
-size64.addEventListener('click', () => {
-    deleteCanvas();
-    createCanvas(64);
-});
 btnRainbowMode.onclick = () => colorMode = 'rainbow';
 btnBlackWhite.onclick = () => colorMode = 'blackAndWhite';
 btnColorMode.onclick = () => colorMode = 'color';
