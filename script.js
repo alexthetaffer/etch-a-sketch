@@ -2,11 +2,11 @@ const CANVAS_SIZE = 712;
 const canvas = document.querySelector('.canvas');
 let pixels;
 let color = 'black';
-let colorMode = "blackAndWhite";
+let colorMode = "shade";
 const canvasSize = document.querySelector('#btn-size');
 const btnRainbowMode = document.querySelector('#rainbow-mode');
 const btnColorMode = document.querySelector('#color-mode');
-const btnBlackWhite = document.querySelector('#black-white-mode');
+const btnBlackWhite = document.querySelector('#shade-mode');
 const colorWell = document.querySelector('#colorWell');
 
 createCanvas(16);
@@ -50,13 +50,12 @@ function deleteCanvas() {
 function getColor(pixel) {
     if (colorMode === 'rainbow') {
         return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
-    } else if (colorMode === 'blackAndWhite') {
+    } else if (colorMode === 'shade') {
         const colors = pixel.style.backgroundColor.replace(/[a-z() ]/g, '').split(',');
         newColor = `rgb(${colors[0] - 26}, ${colors[1] - 26}, ${colors[2] - 26})`;
         return newColor;
     } else return color;
 }
-
 function changeColor(pixel, color) {
     pixel.style.backgroundColor = color;
 }
@@ -73,7 +72,7 @@ canvasSize.addEventListener('click', () => {
 });
 
 btnRainbowMode.onclick = () => colorMode = 'rainbow';
-btnBlackWhite.onclick = () => colorMode = 'blackAndWhite';
+btnBlackWhite.onclick = () => colorMode = 'shade';
 btnColorMode.onclick = () => colorMode = 'color';
 
 colorWell.addEventListener('input', function(e) {
