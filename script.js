@@ -3,7 +3,7 @@ const canvas = document.querySelector('.canvas');
 let pixels;
 let color = '#222222';
 let colorMode = "color";
-const canvasSize = document.querySelector('#btn-size');
+const BtnCanvasSize = document.querySelector('#btn-size');
 const btnRainbowMode = document.querySelector('#rainbow-mode');
 const btnColorMode = document.querySelector('#color-mode');
 const btnShadeMode = document.querySelector('#shade-mode');
@@ -16,12 +16,10 @@ function createCanvas(n) {
     canvas.style.cssText = 
         `grid-template-columns: repeat(${n}, 1fr);
         grid-template-rows: repeat(${n}, 1fr);`;
-        canvas.setAttribute('draggable', 'false')
         for (let i = 0; i < pixelAmount; i++) {
         const pixel = document.createElement('div');
         pixel.className = 'pixel';
         pixel.style.cssText = `background-color: rgb(255, 255, 255)`;
-        pixel.setAttribute('draggable', 'false');
         canvas.appendChild(pixel);
     }
     const pixels = document.querySelectorAll('.pixel');
@@ -61,7 +59,7 @@ function changeColor(pixel, color) {
 }
 
 // Change canvas size
-canvasSize.addEventListener('click', () => {
+BtnCanvasSize.addEventListener('click', () => {
     
     let newCanvasSize = null;
 
@@ -72,7 +70,7 @@ canvasSize.addEventListener('click', () => {
 
     deleteCanvas();
     createCanvas(newCanvasSize);
-    canvasSize.textContent = `${newCanvasSize}×${newCanvasSize}`;
+    BtnCanvasSize.textContent = `${newCanvasSize}×${newCanvasSize}`;
 
 });
 
